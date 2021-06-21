@@ -1,0 +1,74 @@
+{
+  "location": [
+    {
+      "id": 1,
+      "region": "대한민국",
+      "locate": [
+        "서울/김포",
+        "제주",
+        "부산/김해",
+        "청주",
+        "광주",
+        "대구",
+        "울산",
+        "서울/인천"
+      ],
+      "airport_code": ["GMP", "CJU", "PUS", "CJJ", "KWJ", "TAE", "USN", "ICN"]
+    },
+    {
+      "id": 2,
+      "region": "동북아시아",
+      "locate": ["도쿄", "베이징", "타이베이", "상하이", "홍콩"],
+      "airport_code": ["HND", "PEK", "TPE", "PVG", "HKG"]
+    },
+    {
+      "id": 3,
+      "region": "동남아시아",
+      "locate": ["방콕", "호찌민", "싱가포르", "쿠알라룸프르", "마닐라"],
+      "airport_code": ["BKK", "SGN", "SIN", "KUL", "MNL"]
+    },
+    {
+      "id": 4,
+      "region": "미주",
+      "locate": [
+        "뉴욕",
+        "시카고",
+        "보스턴",
+        "시애틀",
+        "로스엔젤레스",
+        "샌프란시스코"
+      ],
+      "airport_code": ["JFK", "ORD", "BOS", "SEA", "LAX", "SFO"]
+    },
+    {
+      "id": 5,
+      "region": "유럽",
+      "locate": ["런던", "파리", "프랑크푸르트", "로마", "취리히"],
+      "airport_code": ["LHR", "CDG", "FRA", "FCO", "ZRH"]
+    },
+    {
+      "id": 6,
+      "region": "대양주/괌",
+      "locate": ["괌", "브리즈번", "시드니", "오클랜드"],
+      "airport_code": ["GUM", "BNE", "SYD", "AKL"]
+    },
+    {
+      "id": 7,
+      "region": "러시아/몽골/중앙아시아",
+      "locate": [
+        "모스크바",
+        "블라디보스토크",
+        "상트페테르부르크",
+        "울란바타르",
+        "타슈켄트"
+      ],
+      "airport_code": ["SVO", "VVO", "LED", "ULN", "TAS"]
+    },
+    {
+      "id": 8,
+      "region": "중동/아프리카",
+      "locate": ["두바이", "아부다비", "텔아비브"],
+      "airport_code": ["DXB", "AUH", "TLV"]
+    }
+  ]
+}
