@@ -1,0 +1,15 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "departAirport": "서울/김포",
+      "departCode": "GMP",
+      "arriveAirport": "제주",
+      "arriveCode": "CJU",
+      "departDate": "2021-07-02",
+      "arriveDate": "2021-07-04",
+      "headCount": 3,
+      "seatType": "일반석"
+    }
+  ]
+}

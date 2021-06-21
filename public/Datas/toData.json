@@ -1,0 +1,80 @@
+{
+  "MESSAGE": "SUCCESS",
+  "flights_view": [
+    {
+      "id": "1",
+      "flight_id": 1,
+      "flight_number": "KA101",
+      "departure_datetime": "2021-07-02T07:05:00",
+      "arrival_datetime": "2021-07-02T08:15:00",
+      "duration": "01:10",
+      "departure_city_name": "서울/김포",
+      "departure_airport_code": "GMP",
+      "arrival_city_name": "제주",
+      "arrival_airport_code": "CJU",
+      "price": 100000.0,
+      "seat_stock": 15,
+      "seat_type": "economy"
+    },
+    {
+      "id": "2",
+      "flight_id": 3,
+      "flight_number": "KA103",
+      "departure_datetime": "2021-07-02T11:00:00",
+      "arrival_datetime": "2021-07-02T12:10:00",
+      "duration": "01:10",
+      "departure_city_name": "서울/김포",
+      "departure_airport_code": "GMP",
+      "arrival_city_name": "제주",
+      "arrival_airport_code": "CJU",
+      "price": 200000.0,
+      "seat_stock": 2,
+      "seat_type": "economy"
+    },
+    {
+      "id": "3",
+      "flight_id": 5,
+      "flight_number": "KA105",
+      "departure_datetime": "2021-07-02T15:10:00",
+      "arrival_datetime": "2021-07-02T16:20:00",
+      "duration": "01:10",
+      "departure_city_name": "서울/김포",
+      "departure_airport_code": "GMP",
+      "arrival_city_name": "제주",
+      "arrival_airport_code": "CJU",
+      "price": 75000.0,
+      "seat_stock": 4,
+      "seat_type": "economy"
+    },
+    {
+      "id": "4",
+      "flight_id": 7,
+      "flight_number": "KA107",
+      "departure_datetime": "2021-07-02T18:30:00",
+      "arrival_datetime": "2021-07-02T19:40:00",
+      "duration": "01:10",
+      "departure_city_name": "서울/김포",
+      "departure_airport_code": "GMP",
+      "arrival_city_name": "제주",
+      "arrival_airport_code": "CJU",
+      "price": 90000.0,
+      "seat_stock": 10,
+      "seat_type": "economy"
+    },
+    {
+      "id": "5",
+      "flight_id": 9,
+      "flight_number": "KA109",
+      "departure_datetime": "2021-07-02T20:30:00",
+      "arrival_datetime": "2021-07-02T21:40:00",
+      "duration": "01:10",
+      "departure_city_name": "서울/김포",
+      "departure_airport_code": "GMP",
+      "arrival_city_name": "제주",
+      "arrival_airport_code": "CJU",
+      "price": 90000.0,
+      "seat_stock": 20,
+      "seat_type": "economy"
+    }
+  ]
+}

@@ -6,8 +6,8 @@ function Nav() {
     <NavBar>
       <NavBarWrap>
         <Logo>
-          <MainLink></MainLink>
-          <SkyTeamLink></SkyTeamLink>
+          <MainLink to="/"></MainLink>
+          <SkyTeamLink to="/"></SkyTeamLink>
         </Logo>
         <Menu>
           <MenuLists>

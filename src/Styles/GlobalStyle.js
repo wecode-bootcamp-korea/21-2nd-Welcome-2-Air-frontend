@@ -2,10 +2,13 @@ import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
-  ${reset}
-
+  ${reset};
   * {
     box-sizing: border-box;
+  }
+  button {
+    padding: 0;
+    margin: 0;
   }
 `;
 
