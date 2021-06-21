@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# Team Welcome-2-Air
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> ## 😎 Our Reference : https://www.koreanair.com/kr/ko
 
-## Available Scripts
+## 💬 프로젝트 개요
+항공권 예약 및 구매 사이트 클로닝
 
-In the project directory, you can run:
+## 👫 팀원
 
-### `npm start`
+- FE 3인: [이상훈](), [오선주](), [이기완]()
+- BE 4인: [박지우](), [손창효](), [이정민](), [범승원](), ([BE Reop](https://github.com/wecode-bootcamp-korea/21-1st-KaKa0Adult-backend))
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 📅 프로젝트 기간
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2021.06.21 ~ 2021.07.01
 
-### `npm test`
+## 🔧 Skills
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- FE : React, React Router, SASS, ES6+
+- BE : Python, Django, Bcrypt, JWT, MySQL
+- Common : RESTful API
 
-### `npm run build`
+## 🐱‍👤 협업 Tool
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Terello, Slack, Git-Hub
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 👍🏻 구현 기능 상세
 
-### `npm run eject`
+### 1. 소셜 로그인
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+> kakao API 기반 소셜 로그인 구현 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2. 메인 페이지 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> - 캐러셀 이미지 슬라이더
+> - 모달 검색창
+> - react-dates 사용 input 구현
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 3. 선택 페이지
 
-## Learn More
+> - 데이터 솔팅
+> - 카드 컴포넌트
+> - 상품 선택
+> - 가격 합산
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 4. 양식 작성 페이지
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> - 입력 폼 작성
+> - 데이터 전송
+> - 아코디언 메뉴
 
-### Code Splitting
+### 5. 예약 확인 페이지
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+> - 예약 데이터 확인 
 
-### Analyzing the Bundle Size
+### 6. 📎 Route Path
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+> - 
+> -
+> -
 
-### Making a Progressive Web App
+## Reference
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 이 프로젝트는 카카오 프렌즈 사이트를 참조하여 학습목적으로 만들었습니다. 실무수준의 프로젝트이지만 학습용으로 만들었기 때문에 이 코드를 활용하여 이득을 취하거나 무단 배포할 경우 법적으로 문제될 수 있습니다.
+- 이 프로젝트에서 사용하고 있는 사진 대부분은 직접 찍거나 unsplash에서 공유받은 Free 이미지이므로 해당 프로젝트 외부인이 사용할 수 없습니다.
+- 이 프로젝트에서 사용한 로고, 커서 이미지는 직접 제작한 것으로 외부인이 사용할 수 없습니다.
