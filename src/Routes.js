@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './Pages/Login/Login';
-import Main from './Pages/Main';
+import Main from './Pages/Main/Main';
 import Departure from './Pages/GradeSelector/Departure';
 import Arrival from './Pages/GradeSelector/Arrival';
 import OrderForm from './Pages/OrderForm';

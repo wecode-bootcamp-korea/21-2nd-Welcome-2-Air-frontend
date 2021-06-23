@@ -16,7 +16,7 @@ function Nav() {
     <NavBar>
       <NavBarWrap>
         <Logo>
-          <MainLink to="/"></MainLink>
+          <MainLink to="/main"></MainLink>
           <SkyTeamLink to="/"></SkyTeamLink>
         </Logo>
         <Menu>

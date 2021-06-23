@@ -94,6 +94,7 @@ function Departure(props) {
 
   return (
     <div>
+      {console.log(props.location.state)}
       {console.log(makeQueryString(makeQuery(MOCK_SEARCH)))}
       <GradeSelectMain>
         <Wrap>
