@@ -2,6 +2,16 @@ import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 
 function Nav() {
+  const getLogOut = () => {
+    const loginInfo = localStorage.getItem('LogToken');
+
+    if (!loginInfo) {
+    } else {
+      localStorage.removeItem('LogToken');
+      alert('로그아웃 되었습니다.');
+    }
+  };
+
   return (
     <NavBar>
       <NavBarWrap>
@@ -28,7 +38,9 @@ function Nav() {
         <Utils>
           <UtilLists>
             <li>
-              <LoginIcon to="/login">로그인</LoginIcon>
+              <LoginIcon onClick={getLogOut} to="/login">
+                {`${!localStorage.getItem('LogToken') ? '로그인' : '로그아웃'}`}
+              </LoginIcon>
             </li>
             <li>
               <AlramIcon></AlramIcon>
