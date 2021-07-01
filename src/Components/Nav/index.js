@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
-
+import { withRouter } from 'react-router';
 function Nav() {
   const getLogOut = () => {
     const loginInfo = localStorage.getItem('LogToken');
@@ -184,4 +184,4 @@ const SearchIcon = styled.button`
   background-color: transparent;
 `;
 
-export default Nav;
+export default withRouter(Nav);
