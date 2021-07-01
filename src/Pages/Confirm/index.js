@@ -1,7 +1,72 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components/macro';
+import Footer from '../../Components/Footer/Footer.js';
+import ConfirmList from './ConfirmList';
+import { fetchGet } from '../../utils/fetches';
 
-export default class Confirm extends Component {
-  render() {
-    return;
+export default function Confirm() {
+  const [reserveLists, setReserveLists] = useState([]);
+
+  function getReservation() {
+    fetchGet('/datas/confirmData.json')
+      .then((res) => res.json())
+      .then((data) => setReserveLists(data));
   }
+
+  return (
+    <>
+      <ConfirmWrap>
+        <ConfirmHeader>
+          <ConfirmTitle>예약 목록</ConfirmTitle>
+          <OptionBtn></OptionBtn>
+          <OtherSearchBtn>예약조회</OtherSearchBtn>
+        </ConfirmHeader>
+        <ConfirmMain>
+          <ConfirmLists>
+            <ConfirmList />
+          </ConfirmLists>
+        </ConfirmMain>
+      </ConfirmWrap>
+      <Footer />
+    </>
+  );
 }
+
+const ConfirmWrap = styled.div`
+  margin: 150px auto 80px;
+  max-width: 1280px;
+`;
+
+const ConfirmHeader = styled.div`
+  margin-top: 120px;
+  display: flex;
+`;
+
+const ConfirmTitle = styled.div`
+  font-size: 24px;
+  font-weight: bold;
+  flex: 30 1 0;
+`;
+
+const OptionBtn = styled.button`
+  width: 40px;
+  flex: 1 1 0;
+  height: 35px;
+  border: 0;
+  outline: 0;
+`;
+
+const OtherSearchBtn = styled.button`
+  flex: 3 1 0;
+  border: 0;
+  outline: 0;
+  margin-left: 20px;
+`;
+
+const ConfirmMain = styled.div`
+  margin: 20px auto;
+`;
+
+const ConfirmLists = styled.ul`
+  list-style: none;
+`;

@@ -32,9 +32,9 @@ const ModalWrapper = styled.div`
   position: relative;
   outline: 0;
   background-color: white;
-  /* width: 70rem; */
+
   height: auto;
-  padding: 3rem;
+  padding: 30px;
 `;
 
 export default Modal;

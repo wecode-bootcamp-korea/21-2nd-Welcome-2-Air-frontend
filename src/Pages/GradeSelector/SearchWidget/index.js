@@ -24,7 +24,7 @@ function SearchWidget(props) {
               className="departure"
               onClick={() => setDepartureModal(true)}
             >
-              ICN
+              {props.searchInfo.departure_city_code}
             </AirportBtn>
             <Modal
               isOpen={departureModal}
@@ -41,7 +41,7 @@ function SearchWidget(props) {
               className="destination"
               onClick={() => setArrivalModal(true)}
             >
-              NYC
+              {props.searchInfo.arrival_city_code}
             </AirportBtn>
             <Modal
               isOpen={arrivalModal}
@@ -58,12 +58,12 @@ function SearchWidget(props) {
           <OptionSelector>
             <DateSelector>
               <div>
-                <DatePicker />
+                <DatePicker searchInfo={props.searchInfo} />
               </div>
             </DateSelector>
             <NumOfPassenger>
               <NumSelectBtn onClick={() => setPassengerModal(true)}>
-                <span className="num">성인 1명</span>
+                <span className="num">{props.searchInfo.headCount}명</span>
               </NumSelectBtn>
               <Modal
                 isOpen={passengerModal}
@@ -77,9 +77,9 @@ function SearchWidget(props) {
             </NumOfPassenger>
             <GradeSelector>
               <GradeSelect>
-                <option>일반석</option>
-                <option>이코노미석</option>
-                <option>일등석</option>
+                <option>economy</option>
+                <option>business</option>
+                <option>firstclass</option>
               </GradeSelect>
             </GradeSelector>
             <WidgetChangeBtn></WidgetChangeBtn>

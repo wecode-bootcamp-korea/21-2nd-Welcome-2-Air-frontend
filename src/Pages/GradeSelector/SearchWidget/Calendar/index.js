@@ -2,11 +2,16 @@ import React from 'react';
 import 'react-dates/initialize';
 import styled from 'styled-components/macro';
 import { DateRangePicker, isInclusivelyBeforeDay } from 'react-dates';
+import 'moment/locale/ko';
 import moment from 'moment';
 
-function DatePicker() {
-  const [startDate, setStartDate] = React.useState(moment());
-  const [endDate, setEndDate] = React.useState(null);
+function DatePicker(props) {
+  const [startDate, setStartDate] = React.useState(
+    moment(props.searchInfo.departure_datetime),
+  );
+  const [endDate, setEndDate] = React.useState(
+    moment(props.searchInfo.arrival_datetime),
+  );
   const [focusedInput, setFocusedInput] = React.useState(null);
 
   return (
@@ -53,6 +58,8 @@ const DatePickerWrap = styled.div`
 
   .DateInput_input {
     font-size: 16px;
+    font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    font-weight: bold;
   }
 `;
 

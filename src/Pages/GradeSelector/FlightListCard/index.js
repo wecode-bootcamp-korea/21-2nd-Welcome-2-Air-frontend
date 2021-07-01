@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 function FlightListCard(props) {
   const arrivalTime = moment(props.list.arrival_datetime).format('hh:mm');
   const departureTime = moment(props.list.departure_datetime).format('hh:mm');
-  const price = props.list.price;
+  const price = +props.list.price;
   const [hour, minute] = props.list.duration.split(':');
   const depCode = props.list.departure_airport_code;
   const arrCode = props.list.arrival_airport_code;

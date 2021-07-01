@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import SearchWidget from '../SearchWidget';
 import FlightListCard from '../FlightListCard';
 import FilterSelector from '../FilterSelector';
+import { LIST_API } from '../../../config';
 import { fetchGet } from '../../../utils/fetches';
 
 const MOCK_SEARCH = {
@@ -24,13 +25,17 @@ function Departure(props) {
   const [selectedDep, setSelectedDep] = useState({});
   const [isDropdownActive, setDropdownActive] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
-  // const [searchInfo, setSearchInfo] = useState(props.location.state.searchInfo);
+  const [searchInfo, setSearchInfo] = useState(props.location.state);
+  const price = +selectedDep.price;
 
   useEffect(() => {
-    fetchGet('/Datas/toData.json')
+    fetchGet(`${LIST_API}?${makeQueryString(makeQuery(searchInfo))}`)
       .then((res) => res.json())
       .then((data) => {
         setFlightLists(data.flights_view);
+        // .filter(
+        //   (el) => el.seat_stock > searchInfo.headCount,
+        // ),
       });
   }, []);
 
@@ -44,8 +49,8 @@ function Departure(props) {
   function makeQuery(searchInfo) {
     const queryObj = {
       arrival_city_id: searchInfo.arrival_city_id,
-      departure_city_id: searchInfo.departure_city_id,
       arrival_datetime: searchInfo.departure_datetime,
+      departure_city_id: searchInfo.departure_city_id,
       departure_datetime: searchInfo.departure_datetime,
       seat_name: searchInfo.seat_name,
     };
@@ -70,22 +75,23 @@ function Departure(props) {
 
   function toGoNextStage(e) {
     e.preventDefault();
-    // !!props.location.state.arrival_city
-    props.history.push({
-      pathname: '/gradeselect/arrival',
-      state: {
-        selectedDep: selectedDep,
-        // count: props.location.state.searchInfo.count,
-        // order 폼에서 구성
-      },
-    });
-    // : props.history.push({
-    //     pathname: '/orderform',
-    //     state: {
-    //       selectedDep: selectedDep,
-    //       count: props.location.state.searchInfo.count,
-    //     },
-    //   });
+    searchInfo.arrival_datetime !== searchInfo.departure_datetime
+      ? props.history.push({
+          pathname: '/gradeselect/arrival',
+          state: {
+            selectedDep: selectedDep,
+            searchInfo: searchInfo,
+            count: searchInfo.headCount,
+            // order 폼에서 구성
+          },
+        })
+      : props.history.push({
+          pathname: '/orderform',
+          state: {
+            selectedDep: selectedDep,
+            count: props.location.state.headCount,
+          },
+        });
   }
 
   function handleSelected(target) {
@@ -94,11 +100,14 @@ function Departure(props) {
 
   return (
     <div>
-      {console.log(props.location.state)}
-      {console.log(makeQueryString(makeQuery(MOCK_SEARCH)))}
+      {console.log(searchInfo)}
       <GradeSelectMain>
         <Wrap>
-          <SearchWidget scrollTop={scrollTop} />
+          <SearchWidget
+            scrollTop={scrollTop}
+            setSearchInfo={setSearchInfo}
+            searchInfo={searchInfo}
+          />
           {/* num navi */}
           <NumNavi>
             <NaviLists>
@@ -128,9 +137,15 @@ function Departure(props) {
               <TitleHead> 가는 편 </TitleHead>
               <p>
                 {/* searchdata 활용 */}
-                <TitlePara>GMP 서울/김포</TitlePara>
+                <TitlePara>
+                  {searchInfo.departure_city_code}
+                  {searchInfo.departure_city_name}
+                </TitlePara>
                 <TitlePara>→</TitlePara>
-                <TitlePara>CJU 제주</TitlePara>
+                <TitlePara>
+                  {searchInfo.arrival_city_code}
+                  {searchInfo.arrival_city_name}
+                </TitlePara>
               </p>
             </TitleWrap>
           </Title>
@@ -164,12 +179,7 @@ function Departure(props) {
               <SubBtnBarTitle>예상 결제 금액</SubBtnBarTitle>
               <SubBtnBarFare>
                 <TotalFare>
-                  <FareNum>
-                    {!selectedDep.price
-                      ? 0
-                      : selectedDep.price.toLocaleString()}
-                  </FareNum>
-                  원
+                  <FareNum>{!price ? 0 : price.toLocaleString()}</FareNum>원
                 </TotalFare>
               </SubBtnBarFare>
               <PaymentBtn isActive={!!selectedDep.id} onClick={toGoNextStage}>

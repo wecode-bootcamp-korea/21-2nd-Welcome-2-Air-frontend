@@ -125,7 +125,7 @@ const Required = styled.span`
   white-space: nowrap;
   text-indent: 100%;
   position: relative;
-  width: 0.5rem;
+  width: 5px;
   font-size: inherit;
   vertical-align: bottom;
   &::after {
@@ -133,8 +133,8 @@ const Required = styled.span`
     position: absolute;
     top: 0;
     left: 0;
-    width: 0.4rem;
-    height: 0.4rem;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
     background-color: #de001b;
   }
@@ -147,7 +147,7 @@ const IdInput = styled.input`
   border-bottom: 1px solid #00256c;
   &:hover {
     border: rgb(87, 124, 192) 1px solid;
-    border-radius: 00.2rem;
+    border-radius: 2px;
   }
 `;
 
@@ -165,7 +165,7 @@ const PwInput = styled.input`
   border-bottom: 1px solid #00256c;
   &:hover {
     border: rgb(87, 124, 192) 1px solid;
-    border-radius: 00.2rem;
+    border-radius: 2px;
   }
 `;
 
@@ -187,7 +187,7 @@ const SnsText = styled.h3`
     top: 50%;
     left: 0;
     right: 0;
-    height: 0.1rem;
+    height: 1px;
     background: #d9dbe1;
   }
 `;
@@ -195,8 +195,8 @@ const SnsText = styled.h3`
 const SnsTitle = styled.span`
   display: inline-block;
   position: relative;
-  margin: 0 1rem;
-  padding: 0 1.7rem;
+  margin: 0 10px;
+  padding: 0 17px;
   background: #fff;
   font-weight: 600;
 `;
@@ -205,7 +205,7 @@ const LoginBtn = styled.button`
   width: 410px;
   height: 60px;
   border: 1.5px solid #fff;
-  border-radius: 0.2rem;
+  border-radius: 2px;
   margin: 30px 0 20px 0;
   padding: 2px;
   cursor: pointer;
@@ -215,7 +215,7 @@ const LoginBtn = styled.button`
   font-weight: 600;
   :hover {
     border: rgb(82, 167, 182) 1.5px solid;
-    border-radius: 00.2rem;
+    border-radius: 2px;
   }
 `;
 
@@ -232,7 +232,7 @@ const BtnSignup = styled(Link)`
   color: black;
   &:hover {
     border: rgb(87, 124, 192) 1px solid;
-    border-radius: 00.2rem;
+    border-radius: 2px;
   }
 `;
 

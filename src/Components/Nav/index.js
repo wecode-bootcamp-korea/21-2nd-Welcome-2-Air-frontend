@@ -167,7 +167,7 @@ const CartIcon = styled.button`
   padding: 0;
   border: 0;
   outline: 0;
-  background: url('/images/cartIcon.svg') center center / 44px 44px no-repeat;
+  background: url('/images/confirm.svg') center center / 44px 44px no-repeat;
   background-color: transparent;
 `;
 

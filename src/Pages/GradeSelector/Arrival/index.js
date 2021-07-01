@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import SearchWidget from '../SearchWidget';
 import FlightListCard from '../FlightListCard';
 import FilterSelector from '../FilterSelector';
-import { API } from '../../../config';
+import { LIST_API } from '../../../config';
 import { fetchGet } from '../../../utils/fetches';
 
 const MOCK_SEARCH = {
@@ -22,14 +22,19 @@ const MOCK_SEARCH = {
 
 function Arrival(props) {
   const selectedDep = props.location.state.selectedDep;
+  const count = props.location.state.count;
+
   const [flightLists, setFlightLists] = useState([]);
   const [selectedArr, setSelectedArr] = useState({});
   const [isDropdownActive, setDropdownActive] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
   const [searchInfo, setSearchInfo] = useState(props.location.state.searchInfo);
 
+  const DepPrice = +selectedDep.price;
+  const ArrPrice = +selectedArr.price;
+
   useEffect(() => {
-    fetchGet('/Datas/fromData.json')
+    fetchGet(`${LIST_API}?${makeQueryString(makeQuery(searchInfo))}`)
       .then((res) => res.json())
       .then((data) => {
         setFlightLists(data.flights_view);
@@ -46,8 +51,8 @@ function Arrival(props) {
   function makeQuery(searchInfo) {
     const queryObj = {
       arrival_city_id: searchInfo.departure_city_id,
-      departure_city_id: searchInfo.arrival_city_id,
       arrival_datetime: searchInfo.arrival_datetime,
+      departure_city_id: searchInfo.arrival_city_id,
       departure_datetime: searchInfo.arrival_datetime,
       seat_name: searchInfo.seat_name,
     };
@@ -55,7 +60,7 @@ function Arrival(props) {
   }
 
   useEffect(() => {
-    scrollTop < 90 && window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -90,7 +95,11 @@ function Arrival(props) {
       {console.log(makeQueryString(makeQuery(MOCK_SEARCH)))}
       <GradeSelectMain>
         <Wrap>
-          <SearchWidget scrollTop={scrollTop} />
+          <SearchWidget
+            scrollTop={scrollTop}
+            setSearchInfo={setSearchInfo}
+            searchInfo={searchInfo}
+          />
           {/* num navi */}
           <NumNavi>
             <NaviLists>
@@ -107,7 +116,7 @@ function Arrival(props) {
                 </NaviLink>
               </NaviList>
               <NaviList>
-                <NaviLink to="orderform">
+                <NaviLink to="/orderform">
                   <Numbering className="undone">3</Numbering>
                   <NaviTitle className="undone">결제</NaviTitle>
                 </NaviLink>
@@ -154,11 +163,9 @@ function Arrival(props) {
               <SubBtnBarFare>
                 <TotalFare>
                   <FareNum>
-                    {!selectedArr.price
-                      ? selectedDep.price.toLocaleString()
-                      : (
-                          selectedDep.price + selectedArr.price
-                        ).toLocaleString()}
+                    {!ArrPrice
+                      ? DepPrice.toLocaleString()
+                      : (DepPrice + ArrPrice).toLocaleString()}
                   </FareNum>
                   원
                 </TotalFare>

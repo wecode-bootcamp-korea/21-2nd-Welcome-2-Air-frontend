@@ -87,11 +87,11 @@ const SelectionButton = styled.button`
   position: absolute;
   bottom: 50px;
   right: 40%;
-  min-width: 13rem;
-  min-height: 3.8rem;
-  border-radius: 0.2rem;
+  min-width: 130px;
+  min-height: 38px;
+  border-radius: 2px;
   border: none;
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 1.5;
   background-color: rgb(36, 82, 156);
   color: #fff;
@@ -102,13 +102,13 @@ const SelectionButton = styled.button`
 const CloseButton = styled.button`
   display: block;
   position: absolute;
-  top: -0.5rem;
-  right: -0.5rem;
-  width: 4.4rem;
-  height: 4.4rem;
+  top: -5px;
+  right: -5px;
+  width: 44px;
+  height: 44px;
   border: 0;
   background: url('/images/close.svg') 50% 50%/24px 24px no-repeat;
-  border-radius: 0.2rem;
+  border-radius: 2px;
   cursor: pointer;
   white-space: nowrap;
 `;

@@ -1,0 +1,24 @@
+{
+  "flight_id": 109,
+  "seat_name": "economy",
+  "reservation": [
+    {
+      "korean_name": "범승원",
+      "english_name": "burma",
+      "birth": "1990-01-01",
+      "phone": "01012345678",
+      "email": "abcd@abcd.com",
+      "gender": "남자",
+      "passport": "M008790151"
+    },
+    {
+      "korean_name": "김 우",
+      "english_name": "kima",
+      "birth": "1990-01-01",
+      "phone": "01012341234",
+      "email": "abcd@abcd.com",
+      "gender": "남자",
+      "passport": "M19160705"
+    }
+  ]
+}
