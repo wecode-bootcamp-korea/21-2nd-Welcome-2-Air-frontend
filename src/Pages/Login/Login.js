@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { KAKAO_LOGIN_API } from '../../config';
 
 function Login() {
+  const history = useHistory();
   const kakaoLoginHandler = () => {
     window.Kakao.Auth.login({
       success: (auth) => {
-        fetch(`${KAKAO_LOGIN_API}/users`, {
+        fetch(`${KAKAO_LOGIN_API}/users/login`, {
           method: 'GET',
           headers: {
             Authorization: auth.access_token,
@@ -18,7 +19,7 @@ function Login() {
             if (res.token) {
               localStorage.setItem('LogToken', res.token);
               alert('로그인성공');
-              this.props.history.push('/');
+              history.push('/main');
             } else {
               alert('다시 확인해 주세요.');
             }
