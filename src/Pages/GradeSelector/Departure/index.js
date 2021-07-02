@@ -7,19 +7,6 @@ import FilterSelector from '../FilterSelector';
 import { LIST_API } from '../../../config';
 import { fetchGet } from '../../../utils/fetches';
 
-const MOCK_SEARCH = {
-  departure_city_id: 1,
-  departure_city_name: '서울 / 김포',
-  departure_airport_code: 'GMP',
-  arrival_city_id: 2,
-  arrival_city_name: '제주',
-  arrival_airport_code: 'CJU',
-  departure_datetime: '2021-07-02',
-  arrival_datetime: '2021-07-04',
-  headCount: 3,
-  seat_name: 'economy',
-};
-
 function Departure(props) {
   const [flightLists, setFlightLists] = useState([]);
   const [selectedDep, setSelectedDep] = useState({});
@@ -27,6 +14,7 @@ function Departure(props) {
   const [scrollTop, setScrollTop] = useState(0);
   const [searchInfo, setSearchInfo] = useState(props.location.state);
   const price = +selectedDep.price;
+  const seat_name = searchInfo.seat_name;
 
   useEffect(() => {
     fetchGet(`${LIST_API}?${makeQueryString(makeQuery(searchInfo))}`)
@@ -82,14 +70,16 @@ function Departure(props) {
             selectedDep: selectedDep,
             searchInfo: searchInfo,
             count: searchInfo.headCount,
-            // order 폼에서 구성
+            seat_name: searchInfo.seat_name,
           },
         })
       : props.history.push({
-          pathname: '/orderform',
+          pathname: '/passengerInfo',
           state: {
-            selectedDep: selectedDep,
+            selected: [selectedDep],
+            searchInfo: searchInfo,
             count: props.location.state.headCount,
+            seat_name: searchInfo.seat_name,
           },
         });
   }
@@ -100,10 +90,10 @@ function Departure(props) {
 
   return (
     <div>
-      {console.log(searchInfo)}
       <GradeSelectMain>
         <Wrap>
           <SearchWidget
+            seat_name={seat_name}
             scrollTop={scrollTop}
             setSearchInfo={setSearchInfo}
             searchInfo={searchInfo}
@@ -163,6 +153,7 @@ function Departure(props) {
                   flightLists.map((flightList) => {
                     return (
                       <FlightListCard
+                        seat_name={searchInfo.seat_name}
                         flightLists={flightLists}
                         key={flightList.id}
                         list={flightList}

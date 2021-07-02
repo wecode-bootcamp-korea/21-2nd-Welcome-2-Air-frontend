@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import Footer from '../../Components/Footer/Footer.js';
 import ConfirmList from './ConfirmList';
 import { fetchGet } from '../../utils/fetches';
+import { FORM_API } from '../../config.js';
 
 export default function Confirm() {
   const [reserveLists, setReserveLists] = useState([]);
 
-  function getReservation() {
-    fetchGet('/datas/confirmData.json')
+  useEffect(() => {
+    fetchGet(FORM_API)
       .then((res) => res.json())
-      .then((data) => setReserveLists(data));
-  }
+      .then((data) => setReserveLists(data.tickets));
+  }, []);
 
   return (
     <>
@@ -23,7 +24,10 @@ export default function Confirm() {
         </ConfirmHeader>
         <ConfirmMain>
           <ConfirmLists>
-            <ConfirmList />
+            {!!reserveLists &&
+              reserveLists.map((list, idx) => (
+                <ConfirmList key={idx} list={list} />
+              ))}
           </ConfirmLists>
         </ConfirmMain>
       </ConfirmWrap>
@@ -46,6 +50,7 @@ const ConfirmTitle = styled.div`
   font-size: 24px;
   font-weight: bold;
   flex: 30 1 0;
+  color: #00256c;
 `;
 
 const OptionBtn = styled.button`

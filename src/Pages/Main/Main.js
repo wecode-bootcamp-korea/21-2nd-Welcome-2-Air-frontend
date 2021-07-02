@@ -94,13 +94,13 @@ function Main() {
                 <Form>
                   <Seating value={seatInfo} onChange={handleSeatChange}>
                     <option value="economy" className="seatingOption">
-                      economy
+                      ECONOMY
                     </option>
                     <option value="business" className="seatingOption">
-                      business
+                      BUSINESS
                     </option>
                     <option value="firstclass" className="seatingOption">
-                      firstclass
+                      FIRSTCLASS
                     </option>
                   </Seating>
                 </Form>

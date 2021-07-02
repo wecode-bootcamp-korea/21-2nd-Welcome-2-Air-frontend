@@ -49,7 +49,7 @@ function FlightListCard(props) {
             />
             <label htmlFor={props.list.id}></label>
             <FareWrap>
-              <GradeTitle>{`일반석`}</GradeTitle>
+              <GradeTitle>{props.seat_name.toUpperCase()}</GradeTitle>
               <GradeFare>
                 <Fare>{price.toLocaleString()}</Fare>원
               </GradeFare>

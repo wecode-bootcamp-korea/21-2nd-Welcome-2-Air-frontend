@@ -36,7 +36,6 @@ export const fetchGet = (api) => {
     token ? { Authorization: token } : null,
   );
   const options = { method: 'GET', headers };
-
   return fetch(api, options);
 };
 

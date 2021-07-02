@@ -1,24 +1,17 @@
 {
-  "flight_id": 109,
-  "seat_name": "economy",
-  "reservation": [
+  "result": "SUCCESS",
+  "tickets": [
     {
-      "korean_name": "범승원",
-      "english_name": "burma",
-      "birth": "1990-01-01",
-      "phone": "01012345678",
-      "email": "abcd@abcd.com",
-      "gender": "남자",
-      "passport": "M008790151"
-    },
-    {
-      "korean_name": "김 우",
-      "english_name": "kima",
-      "birth": "1990-01-01",
-      "phone": "01012341234",
-      "email": "abcd@abcd.com",
-      "gender": "남자",
-      "passport": "M19160705"
+      "ticketId": 8,
+      "userId": 4,
+      "ticketNumber": "b2846a63-63a6-4da7-8c5f-c776cee39028",
+      "flightId": 30,
+      "departureDatetime": "2021-07-02T11:00:00",
+      "departureAirportCode": "CJU",
+      "arrivalAirportCode": "KWJ",
+      "departureAirportName": "제주",
+      "arrivalAirportName": "광주",
+      "passengerSameFlight": 2
     }
   ]
 }

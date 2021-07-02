@@ -48,13 +48,11 @@ export default function CityPicker(props) {
                   key={id}
                   className={toggleState === id ? 'rightTabOn' : 'rightTab'}
                 >
-                  {console.log(item)}
                   <LocalTitle>대한항공 취항지</LocalTitle>
                   <ul>
                     {item.map((city, index) => {
                       return (
                         <LocalList key={index}>
-                          {console.log(city)}
                           <LocalButton>
                             <LocalCode>{city.airport_code}</LocalCode>
                             <span>{city.city_name}</span>

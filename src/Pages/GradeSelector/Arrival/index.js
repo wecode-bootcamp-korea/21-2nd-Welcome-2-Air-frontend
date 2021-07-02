@@ -7,22 +7,10 @@ import FilterSelector from '../FilterSelector';
 import { LIST_API } from '../../../config';
 import { fetchGet } from '../../../utils/fetches';
 
-const MOCK_SEARCH = {
-  departure_city_id: 1,
-  departure_city_name: '서울 / 김포',
-  departure_airport_code: 'GMP',
-  arrival_city_id: 2,
-  arrival_city_name: '제주',
-  arrival_airport_code: 'CJU',
-  departure_datetime: '2021-07-02',
-  arrival_datetime: '2021-07-04',
-  headCount: 3,
-  seat_name: 'economy',
-};
-
 function Arrival(props) {
   const selectedDep = props.location.state.selectedDep;
   const count = props.location.state.count;
+  const seat_name = props.location.state.seat_name;
 
   const [flightLists, setFlightLists] = useState([]);
   const [selectedArr, setSelectedArr] = useState({});
@@ -78,10 +66,11 @@ function Arrival(props) {
   function toGoNextStage(e) {
     e.preventDefault();
     props.history.push({
-      pathname: '/orderform',
+      pathname: '/passengerInfo',
       state: {
         selected: [selectedDep, selectedArr],
-        count: props.location.state.searchInfo.count,
+        count: count,
+        seat_name: seat_name,
       },
     });
   }
@@ -92,10 +81,10 @@ function Arrival(props) {
 
   return (
     <div>
-      {console.log(makeQueryString(makeQuery(MOCK_SEARCH)))}
       <GradeSelectMain>
         <Wrap>
           <SearchWidget
+            seat_name={seat_name}
             scrollTop={scrollTop}
             setSearchInfo={setSearchInfo}
             searchInfo={searchInfo}
@@ -148,6 +137,7 @@ function Arrival(props) {
                   flightLists.map((flightList) => {
                     return (
                       <FlightListCard
+                        seat_name={seat_name}
                         key={flightList.id}
                         list={flightList}
                         handleSelected={handleSelected}

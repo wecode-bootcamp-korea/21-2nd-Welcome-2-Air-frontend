@@ -1,29 +1,28 @@
 import React, { useState } from 'react';
 import AccordianInfo from './Accordian/AccordianInfo';
 import AccordianCoution from './Accordian/AccordianCaution';
-import TravelInfo from './TracelInfo/TravelInfo';
+import TravelInfo from './TravelInfo/TravelInfo';
 import PriceInfo from './Price/PriceInfo';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { fetchPost } from '../../utils/fetches';
-import { API } from '../../config';
-
-const FROMROUTEINFO = { selected: [{}, {}], count: 3 };
-
-const a = Array(3).fill({
-  korean_name: '',
-  english_name: '',
-  gender: '',
-  birth: '',
-  phone: '',
-  email: '',
-  passport: '',
-});
+import { FORM_API, PDF_API } from '../../config';
 
 function PassengerInfo(props) {
-  // const selectedFlight = props.location.state.selected;
-  // const headCount = props.location.state.count;
-
-  const [passengerLists, setPassengerLists] = useState(a);
+  const selectedFlight = props.location.state.selected;
+  const prices = selectedFlight.map((el) => +el.price);
+  const count = props.location.state.count;
+  const seat_name = props.location.state.seat_name;
+  const [passengerLists, setPassengerLists] = useState(
+    Array(count).fill({
+      korean_name: '',
+      english_name: '',
+      gender: '',
+      birth: '',
+      phone: '',
+      email: '',
+      passport: '',
+    }),
+  );
 
   function handlePassengerInfo(e) {
     const { name, value, dataset } = e.target;
@@ -32,39 +31,51 @@ function PassengerInfo(props) {
     setPassengerLists(nextPassengerLists);
   }
 
+  const checkedForm = () => {
+    const checkedLogin = localStorage.getItem('LogToken');
+    if (!checkedLogin) {
+      alert('로그인이 필요합니다.');
+    } else {
+      submitForm();
+    }
+  };
+
   function submitForm() {
-    fetchPost(API, {
-      flight_id: props.loaction.state.selectedDep.flight_id,
-      seat_name: 'economy',
+    console.log(selectedFlight);
+    fetchPost(FORM_API, {
+      flight_id: selectedFlight[0].flight_id,
+      seat_name: seat_name,
       passengers: passengerLists,
     })
       .then((res) => res.json())
-      .then((res) =>
-        fetchPost(API, { ticket_id: res })
+      .then((res) => {
+        fetchPost(PDF_API, { ticket_id: res.ticketId })
           .then((res) => res.json())
-          .then((res) => console.log(res)),
-      );
-    fetchPost(API, {
-      flight_id: props.loaction.state.selectedArr.flight_id,
-      seat_name: 'economy',
+          .then((res) => console.log(res));
+      });
+    fetchPost(FORM_API, {
+      flight_id: selectedFlight[1].flight_id,
+      seat_name: seat_name,
       passengers: passengerLists,
     })
       .then((res) => res.json())
-      .then((res) =>
-        fetchPost(API, { ticket_id: res })
+      .then((res) => {
+        fetchPost(PDF_API, { ticket_id: res.ticketId })
           .then((res) => res.json())
-          .then((res) => console.log(res)),
-      );
+          .then((res) => console.log(res));
+      });
     props.history.push('/main');
   }
 
   return (
     <ContentsAll>
       <Reservation>
-        <span>여정 정보</span>
-        <TravelInfo />
+        <SubTitle>여정 정보</SubTitle>
+        {selectedFlight.map((flight, idx) => (
+          <TravelInfo key={idx} flight={flight} />
+        ))}
         <Passenger>
-          <span>탑승자 정보</span>
+          <SubTitle>탑승자 정보</SubTitle>
           {passengerLists.map((passenger, idx) => (
             <AccordianInfo
               key={idx}
@@ -78,7 +89,7 @@ function PassengerInfo(props) {
         </Passenger>
       </Reservation>
       <Price>
-        <PriceInfo />
+        <PriceInfo selectedFlight={selectedFlight} count={count} />
       </Price>
       <SubBtnBar>
         <SubBtnBarWrap>
@@ -86,16 +97,16 @@ function PassengerInfo(props) {
           <SubBtnBarFare>
             <TotalFare>
               <FareNum>
-                {/* {!selectedArr.price
-                    ? selectedDep.price.toLocaleString()
-                    : (selectedDep.price + selectedArr.price).toLocaleString()} */}
+                {!selectedFlight.length === 1
+                  ? prices[0].toLocaleString() * count
+                  : prices
+                      .reduce((acc, cur) => acc + cur * count, 0)
+                      .toLocaleString()}
               </FareNum>
               원
             </TotalFare>
           </SubBtnBarFare>
-          {/* <PaymentBtn isActive={!!selectedDep.id} onClick={submitForm}>
-              다음 여정
-            </PaymentBtn> */}
+          <ReserveBtn onClick={checkedForm}>예약 하기</ReserveBtn>
         </SubBtnBarWrap>
       </SubBtnBar>
     </ContentsAll>
@@ -105,33 +116,32 @@ function PassengerInfo(props) {
 const ContentsAll = styled.article`
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin: 100px auto;
 `;
 
 const Reservation = styled.div`
   width: 1000px;
-
   padding: 20px 0;
   background-color: #fff;
-  span {
-    display: inline-block;
-    margin-bottom: 10px;
-    font-size: 23px;
-    font-weight: bold;
-  }
 `;
 
 const Passenger = styled.div`
-  span {
-    font-size: 23px;
-    font-weight: bold;
-  }
+  margin-top: 30px;
+`;
+
+const SubTitle = styled.span`
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #00256c;
+  line-height: 1.5;
 `;
 
 const Price = styled.label`
   width: 250px;
   height: 100px;
-  margin: 50px 0 15px 20px;
+  margin: 65px 0 15px 20px;
   background-color: #fff;
 `;
 
@@ -184,9 +194,9 @@ const FareNum = styled.em`
   line-height: 1.5;
 `;
 
-const PaymentBtn = styled.button`
+const ReserveBtn = styled.button`
   border: 1px solid #bcbcbc;
-  background-color: ${(props) => (props.isActive ? '#118fe4;' : '#bcbcbc')};
+  background-color: #118fe4;
   color: #fff;
   min-width: 240px;
   height: 60px;

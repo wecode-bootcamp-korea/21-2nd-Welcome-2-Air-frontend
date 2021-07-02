@@ -77,6 +77,7 @@ function SearchWidget(props) {
             </NumOfPassenger>
             <GradeSelector>
               <GradeSelect>
+                <option>{props.seat_name.toUpperCase()}</option>
                 <option>economy</option>
                 <option>business</option>
                 <option>firstclass</option>

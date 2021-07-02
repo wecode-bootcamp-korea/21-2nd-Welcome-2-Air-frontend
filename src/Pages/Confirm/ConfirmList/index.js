@@ -1,32 +1,47 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import Modal from 'react-modal';
+import moment from 'moment';
+import { fetchGet } from '../../../utils/fetches';
+import { PDF_API } from '../../../config';
+import PdfModal from './PdfModal';
 
-export default function ConfirmList() {
+export default function ConfirmList(props) {
   const [eticketModal, setEticketModal] = useState(false);
+  const [eTicketLists, setETicketLists] = useState([]);
+
+  function handlePdfModal() {
+    console.log(`${PDF_API}?ticket_id=${props.list.ticketId}`);
+
+    setEticketModal(true);
+    fetchGet(`${PDF_API}?ticket_id=${props.list.ticketId}`)
+      .then((res) => res.json())
+      .then((data) => setETicketLists(data));
+  }
+
   return (
     <ReserveList>
       <TicketInfo>
         <div>
-          <NameTag># 1</NameTag>
+          <NameTag></NameTag>
         </div>
         <LocationSec>
           <DepLocation>
-            <DepAirCode>GMP</DepAirCode>
-            <DepName>서울/김포</DepName>
+            <DepAirCode>{props.list.departureAirportCode}</DepAirCode>
+            <DepName>{props.list.departureAirportName}</DepName>
           </DepLocation>
           <hr />
           <ArrLocation>
-            <ArrAirCode>CJU</ArrAirCode>
-            <ArrName>제주</ArrName>
+            <ArrAirCode>{props.list.arrivalAirportCode}</ArrAirCode>
+            <ArrName>{props.list.arrivalAirportName}</ArrName>
           </ArrLocation>
         </LocationSec>
         <DateSec>
-          2021년 07월 06일 (화) 10:00
-          <SeatCount>2석</SeatCount>
+          {moment(props.list.departureDatetime).format('YYYY-MM-DD(dd) hh:mm')}
+          <SeatCount>{props.list.passengerSameFlight}석</SeatCount>
         </DateSec>
         <PdfSec>
-          <PdfBtn onClick={() => setEticketModal(true)}>e-ticket</PdfBtn>
+          <PdfBtn onClick={handlePdfModal}>e-ticket</PdfBtn>
           <Modal
             isOpen={eticketModal}
             onRequestClose={() => setEticketModal(false)}
@@ -55,12 +70,16 @@ export default function ConfirmList() {
                 padding: '20px',
               },
             }}
-          ></Modal>
+          >
+            <PdfModal eTicketLists={eTicketLists} />
+          </Modal>
         </PdfSec>
       </TicketInfo>
       <ReserveStatus>
         <StatusTitle>예약 완료</StatusTitle>
-        <ReserveNum>예약번호 73917798</ReserveNum>
+        <ReserveNum>
+          예약번호 {props.list.ticketNumber.split('-')[0]}
+        </ReserveNum>
         <CheckinBtn>체크인 확인</CheckinBtn>
       </ReserveStatus>
     </ReserveList>
@@ -68,7 +87,7 @@ export default function ConfirmList() {
 }
 
 const ReserveList = styled.li`
-  min-height: 200px;
+  min-height: 150px;
   margin: 0 auto;
   background-color: #f8fbff;
   display: flex;
@@ -92,8 +111,9 @@ const ReserveList = styled.li`
 `;
 
 const TicketInfo = styled.div`
+  position: relative;
   width: 71.1%;
-  padding: 23px 0 23px 20px;
+  padding: 15px 30px;
 `;
 
 const ReserveStatus = styled.div`
@@ -102,7 +122,7 @@ const ReserveStatus = styled.div`
   justify-content: space-between;
   width: 28.9%;
   margin: 0;
-  padding: 40px 50px 25px;
+  padding: 40px 50px;
   border-top: 0;
   border-left: 1px dashed #d9dbe1;
 `;
@@ -196,14 +216,18 @@ const SeatCount = styled.span`
 
 const PdfSec = styled.div`
   display: flex;
+
   flex-direction: row-reverse;
   padding-right: 30px;
 `;
 
 const PdfBtn = styled.button`
+  position: absolute;
+  top: 15px;
+  left: 15px;
   color: #fff;
   font-size: 16px;
-  background: #0064de;
+  background: #00256c;
   padding: 3px 10px;
   border: 0;
   outline: 0;

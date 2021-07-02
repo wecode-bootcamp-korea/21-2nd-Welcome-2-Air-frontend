@@ -1,6 +1,12 @@
 import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { withRouter } from 'react-router';
+import { validateKorean_name } from '../../../utils/validaters';
+import { validateEnglish_name } from '../../../utils/validaters';
+import { validateEmail } from '../../../utils/validaters';
+import { validatePhone } from '../../../utils/validaters';
+import { validateBirth } from '../../../utils/validaters';
+import { validatePassport } from '../../../utils/validaters';
 
 function AccordianInfo(props) {
   const content = useRef(null);
@@ -10,25 +16,26 @@ function AccordianInfo(props) {
   };
 
   const checkInfo = () => {
-    // alert(JSON.stringify(props.passengerLists, null, 2));
-    // if (korean_name === '') {
-    //   alert('이름(한글)을 확인해주세요');
-    // } else if (nameEng === '') {
-    //   alert('이름(영문)을 확인해주세요');
-    // } else if (gender === '') {
-    //   alert('성별을 확인해주세요');
-    // } else if (birth === '') {
-    //   alert('생년월일을 확인해주세요');
-    // } else if (phone === '') {
-    //   alert('휴대폰 번호를 확인해주세요');
-    // } else if (email === '') {
-    //   alert('이메일을 확인해주세요');
-    // } else if (passport === '') {
-    //   alert('여권번호를 확인해주세요');
-    // } else {
-    setHeight(0);
+    const { korean_name, english_name, gender, birth, phone, email, passport } =
+      props.list;
+    if (korean_name === '' || !validateKorean_name(korean_name)) {
+      alert('이름(한글)을 확인해주세요');
+    } else if (english_name === '' || !validateEnglish_name(english_name)) {
+      alert('이름(영문)을 확인해주세요');
+    } else if (gender === '') {
+      alert('성별을 확인해주세요');
+    } else if (birth === '' || !validateBirth(birth)) {
+      alert('생년월일을 확인해주세요');
+    } else if (phone === '' || !validatePhone(phone)) {
+      alert('휴대폰 번호를 확인해주세요');
+    } else if (email === '' || !validateEmail(email)) {
+      alert('이메일을 확인해주세요');
+    } else if (passport === '' || !validatePassport(passport)) {
+      alert('여권번호를 확인해주세요');
+    } else {
+      setHeight(0);
+    }
   };
-  // };
 
   return (
     <Container>
@@ -42,8 +49,9 @@ function AccordianInfo(props) {
       <AccrodionContent height={height} ref={content}>
         <InputWrapper>
           <NameText>
-            <nameKor>
-              승객 이름(한글)<Required>필수 입력</Required>
+            <NameKor>
+              <Subtitle> 승객 이름(한글)</Subtitle>
+              <Required>필수 입력</Required>
               <InputAll
                 type="text"
                 data-row="korean_name"
@@ -51,8 +59,8 @@ function AccordianInfo(props) {
                 name={props.id}
                 value={props.list.korean_name}
               />
-            </nameKor>
-            <nameEng>
+            </NameKor>
+            <NameEng>
               승객 이름(영문)<Required>필수 입력</Required>
               <InputAll
                 type="text"
@@ -61,28 +69,30 @@ function AccordianInfo(props) {
                 name={props.id}
                 value={props.list.english_name}
               />
-            </nameEng>
+            </NameEng>
           </NameText>
           <AddInfo>
             <Gender>
               성별<Required>필수 입력</Required>
               <BtnRadio>
                 <Checkbox
+                  id="male"
                   type="radio"
                   data-row="gender"
                   onChange={props.handlePassengerInfo}
                   name={props.id}
                   value="남자"
                 />
-                <GenderFont for="Checkbox">남자</GenderFont>
+                <GenderFont htmlFor="male">남자</GenderFont>
                 <Checkbox
+                  id="female"
                   type="radio"
                   data-row="gender"
                   onChange={props.handlePassengerInfo}
                   name={props.id}
                   value="여자"
                 />
-                <GenderFont for="Checkbox">여자</GenderFont>
+                <GenderFont htmlFor="female">여자</GenderFont>
               </BtnRadio>
             </Gender>
             <Birth>
@@ -96,10 +106,11 @@ function AccordianInfo(props) {
               />
             </Birth>
           </AddInfo>
-          <NumText htmlFor>
+          <NumText htmlFor="phone">
             <Phone>
               전화번호<Required>필수 입력</Required>
               <InputAll
+                id="phone"
                 type="text"
                 data-row="phone"
                 onChange={props.handlePassengerInfo}
@@ -119,7 +130,7 @@ function AccordianInfo(props) {
             </Email>
           </NumText>
           <MemberNum>
-            여권번호
+            <span>여권번호</span>
             <Required>필수 입력</Required>
             <InputAll
               type="text"
@@ -203,18 +214,23 @@ const NameText = styled.label`
   justify-content: space-between;
 `;
 
-const nameKor = styled.div`
+const NameKor = styled.div`
   width: 50%;
   padding-top: 10px;
   margin: 10px 0;
   color: gray;
 `;
 
-const nameEng = styled.div`
+const NameEng = styled.div`
   width: 50%;
   margin: 10px 0;
   padding-top: 10px;
   color: gray;
+`;
+
+const Subtitle = styled.span`
+  line-height: 1.58;
+  font-size: 14px;
 `;
 
 const Required = styled.span`
@@ -226,6 +242,7 @@ const Required = styled.span`
   width: 0.5rem;
   font-size: inherit;
   vertical-align: bottom;
+  top: -10px;
   &::after {
     content: '';
     position: absolute;
@@ -338,6 +355,7 @@ const SummitBox = styled.div`
     text-align: center;
     cursor: pointer;
     appearance: none;
+    font-size: 16px;
   }
 `;
 export default withRouter(AccordianInfo);
