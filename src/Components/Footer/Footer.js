@@ -88,14 +88,14 @@ export default function Footer() {
 }
 
 const TextContainer = styled.div`
-  padding: 3.9rem 2rem 3.5rem;
+  padding: 39px 20px 35px;
   border-top: 1px solid #d9dbe1;
   background-color: #f3f4f8;
 `;
 
 const TextAligner = styled.div`
   position: relative;
-  max-width: 128rem;
+  max-width: 1280px;
   margin: 0 auto;
 `;
 
@@ -109,18 +109,18 @@ const ContentList = styled.li`
 `;
 
 const ContentName = styled.h6`
-  margin-bottom: 1.1rem;
+  margin-bottom: 11px;
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 13px;
 `;
 
 const ContentItems = styled.a`
   display: block;
   padding: 5px 0;
-  margin: 0.2rem 0;
+  margin: 2px 0;
   line-height: 1.58;
   color: #555;
-  font-size: 1.1rem;
+  font-size: 11px;
   text-decoration: none;
 `;
 
@@ -132,7 +132,7 @@ const SnsContainer = styled.div`
 `;
 
 const SnsList = styled.li`
-  padding: 0 0 0 0.8rem;
+  padding: 0 0 0 8px;
   display: table-cell;
   vertical-align: middle;
 `;
@@ -142,61 +142,61 @@ const SnsLink = styled.a`
 `;
 
 const SnsImage = styled.img`
-  width: 4.4rem;
-  height: 4.4rem;
+  width: 44px;
+  height: 44px;
 `;
 
 const AppstoreContainer = styled.div`
   position: absolute;
-  top: 5.6rem;
+  top: 56px;
   right: 0;
 `;
 
 const AppstoreWrapper = styled.ul`
   display: flex;
   justify-content: flex-end;
-  width: 25.25.rem;
+  width: 252.5.px;
 `;
 
 const AppList = styled.li`
-  margin: 0 0 2rem 1.6rem;
+  margin: 0 0 20px 16px;
 `;
 
 const AppImage = styled.img`
-  width: 10.8rem;
-  height: 3.4rem;
+  width: 108px;
+  height: 34px;
 `;
 
 const ContactContainer = styled.div`
-  padding: 2rem 2rem 7rem 2rem;
+  padding: 20px 20px 70px 20px;
 `;
 
 const ContactAligner = styled.div`
   width: 100%;
-  max-width: 128rem;
+  max-width: 1280px;
   margin: 0 auto;
 `;
 
 const ContactItem = styled.div`
   float: left;
   color: #767676;
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 1.58;
 `;
 
 const Business = styled.strong`
-  margin-right: 2rem;
+  margin-right: 20px;
   color: #00256c;
   font-weight: 700;
 `;
 
 const ContactList = styled.li`
   position: relative;
-  margin-left: 1rem;
-  padding-left: 1rem;
+  margin-left: 10px;
+  padding-left: 10px;
   float: left;
   color: #767676;
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 1.58;
 
   :before {
@@ -205,7 +205,7 @@ const ContactList = styled.li`
     top: 50%;
     left: 0;
     width: 1px;
-    height: 1.1rem;
+    height: 11px;
     background-color: #d9dbe1;
     transform: translateY(-50%);
   }
@@ -215,29 +215,29 @@ const BusinessList = styled.li`
   clear: left;
   float: left;
   color: #767676;
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 1.58;
 `;
 
 const CopyRight = styled.p`
   clear: both;
   width: 100%;
-  max-width: 128rem;
+  max-width: 1280px;
   margin: 0 auto;
   color: #555;
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 0.58;
 `;
 
 const MarkInfo = styled.div`
   position: relative;
   float: right;
-  min-width: 30rem;
-  margin-top: -0.8rem;
+  min-width: 30px;
+  margin-top: -8px;
 `;
 
 const MarkList = styled.li`
-  padding: 0 1rem;
+  padding: 0 10px;
 `;
 
 const MarkButton = styled.button`
@@ -247,8 +247,8 @@ const MarkButton = styled.button`
 
 const MarkImage = styled.img`
   display: inline-block;
-  width: 6rem;
-  height: 6rem;
+  width: 60px;
+  height: 60px;
 `;
 
 const INFO = [

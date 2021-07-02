@@ -1,13 +1,15 @@
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import { getToken, removeToken } from '../../utils/storage';
+
 function Nav() {
   const getLogOut = () => {
-    const loginInfo = localStorage.getItem('LogToken');
+    const loginInfo = getToken();
 
     if (!loginInfo) {
     } else {
-      localStorage.removeItem('LogToken');
+      removeToken();
+      window.Kakao.Auth.logout();
       alert('로그아웃 되었습니다.');
     }
   };
@@ -39,14 +41,16 @@ function Nav() {
           <UtilLists>
             <li>
               <LoginIcon onClick={getLogOut} to="/login">
-                {`${!localStorage.getItem('LogToken') ? '로그인' : '로그아웃'}`}
+                {`${!getToken() ? '로그인' : '로그아웃'}`}
               </LoginIcon>
             </li>
             <li>
               <AlramIcon></AlramIcon>
             </li>
             <li>
-              <CartIcon></CartIcon>
+              <Link to="/confirm">
+                <CartIcon></CartIcon>
+              </Link>
             </li>
             <li>
               <SearchIcon></SearchIcon>
@@ -142,7 +146,7 @@ const LoginIcon = styled(Link)`
   font-size: 16px;
   line-height: 48px;
   text-decoration: none;
-  width: 55px;
+  width: 65px;
 `;
 
 const AlramIcon = styled.button`
@@ -167,7 +171,7 @@ const CartIcon = styled.button`
   padding: 0;
   border: 0;
   outline: 0;
-  background: url('/images/cartIcon.svg') center center / 44px 44px no-repeat;
+  background: url('/images/confirm.svg') center center / 44px 44px no-repeat;
   background-color: transparent;
 `;
 

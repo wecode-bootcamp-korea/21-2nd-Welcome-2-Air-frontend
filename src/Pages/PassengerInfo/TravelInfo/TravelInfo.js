@@ -1,21 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 
-function TravelInfo() {
+function TravelInfo(props) {
   return (
     <JourneyContent>
       <JourneyInfo>
-        <h3>가는 편 </h3>
+        <h3>운항 정보</h3>
         <Details>
           <div>
-            <DepartureCity>ICN 서울/인천</DepartureCity>
+            <DepartureCity>
+              {`${props.flight.departure_airport_code}  ${props.flight.departure_city_name}`}
+            </DepartureCity>
             <img src="/images/Arrow.svg" alt="방향" />
-            <ArrivalCity>NRT 도쿄/나리타</ArrivalCity>
+            <ArrivalCity>
+              {`${props.flight.arrival_airport_code}  ${props.flight.arrival_city_name}`}
+            </ArrivalCity>
           </div>
           <AddInfo>
-            <p>날짜</p>
-            <p>항공편</p>
-            <p>좌석</p>
+            <p>항공편 {props.flight.flight_number}</p>
+            <p>
+              날짜{' '}
+              {`${moment(props.flight.departure_datetime).format(
+                'YYYY-MM-DD hh:mm',
+              )} → ${moment(props.flight.arrival_datetime).format(
+                'YYYY-MM-DD hh:mm',
+              )}`}
+            </p>
           </AddInfo>
         </Details>
       </JourneyInfo>
@@ -30,7 +41,7 @@ const JourneyContent = styled.div`
 const JourneyInfo = styled.div`
   display: flex;
   flex-wrap: row wrap;
-  padding: 30px 40px;
+  padding: 40px 30px;
   margin-bottom: 20px;
   border: 1px solid lightgray;
   h3 {

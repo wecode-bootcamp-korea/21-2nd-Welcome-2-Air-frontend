@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 function FlightListCard(props) {
   const arrivalTime = moment(props.list.arrival_datetime).format('hh:mm');
   const departureTime = moment(props.list.departure_datetime).format('hh:mm');
-  const price = props.list.price;
+  const price = +props.list.price;
   const [hour, minute] = props.list.duration.split(':');
   const depCode = props.list.departure_airport_code;
   const arrCode = props.list.arrival_airport_code;
@@ -49,7 +49,7 @@ function FlightListCard(props) {
             />
             <label htmlFor={props.list.id}></label>
             <FareWrap>
-              <GradeTitle>{`일반석`}</GradeTitle>
+              <GradeTitle>{props.seat_name.toUpperCase()}</GradeTitle>
               <GradeFare>
                 <Fare>{price.toLocaleString()}</Fare>원
               </GradeFare>

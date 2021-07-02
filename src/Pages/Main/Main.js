@@ -17,7 +17,7 @@ function Main() {
 
   const [amount, setAmount] = useState(0);
   const [depDate, setDepDate] = useState(moment().format('YYYY.MM.DD'));
-  const [arrDate, setArrDate] = useState(moment().format('YYYY.MM.DD'));
+  const [arrDate, setArrDate] = useState('');
   const [depLocation, setDepLocation] = useState(['GMP', '서울/김포']);
   const [depLocationId, setDepLocationId] = useState('');
   const [arrLocation, setArrLocation] = useState(['To', '도착지']);
@@ -94,13 +94,13 @@ function Main() {
                 <Form>
                   <Seating value={seatInfo} onChange={handleSeatChange}>
                     <option value="economy" className="seatingOption">
-                      economy
+                      ECONOMY
                     </option>
                     <option value="business" className="seatingOption">
-                      business
+                      BUSINESS
                     </option>
                     <option value="firstclass" className="seatingOption">
-                      firstclass
+                      FIRSTCLASS
                     </option>
                   </Seating>
                 </Form>
@@ -118,8 +118,8 @@ function Main() {
               arrival_city_id: arrLocationId,
               arrival_city_name: arrLocation[1],
               arrival_city_code: arrLocation[0],
-              departure_datetime: depDate,
-              arrival_datetime: arrDate,
+              departure_datetime: moment(depDate).format('YYYY-MM-DD'),
+              arrival_datetime: moment(arrDate).format('YYYY-MM-DD'),
               headCount: amount,
               seat_name: seatInfo,
             },
@@ -160,47 +160,49 @@ function Main() {
 }
 
 const MainBooking = styled.section`
-  max-width: 1390px;
-  padding: 9rem 0 6rem;
+  max-width: 1280px;
+  padding: 90px 0 60px;
   margin: 0 auto;
+  font-size: 100%;
 `;
 const Title = styled.h1`
+  padding-top: 40px;
   font-weight: 400;
-  font-size: 2.6rem;
+  font-size: 32px;
   color: #000;
 `;
 
 const BookingWrapper = styled.div`
-  margin: 4rem 0;
+  margin: 40px 0;
 `;
 
 const Journey = styled.h2`
   margin-bottom: 20px;
-  font-size: 1.6rem;
+  font-size: 16px;
   line-height: 1.5;
 `;
 
 const BookingBox = styled.div`
-  margin: 1rem 0 0;
+  margin: 10px 0 0;
 `;
 
 const BookingContainer = styled.div`
   position: relative;
-  margin-bottom: 2.4rem;
+  margin-bottom: 24px;
   padding: 0 34% 0 0;
-  border-top: 0.4rem solid #c7f3ff;
-  border-radius: 0 0 0.4rem 0.4rem;
-  box-shadow: 0.2rem 1.6rem 2rem 0 rgb(35 55 94 / 14%);
+  border-top: 4px solid #c7f3ff;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 2px 16px 20px 0 rgb(35 55 94 / 14%);
   background-color: #fff;
 
   ::before {
     content: '';
     display: block;
     position: absolute;
-    top: -0.35rem;
+    top: -3.5px;
     right: 0;
     width: 35.125%;
-    height: 0.3rem;
+    height: 3px;
     background: url('http://localhost:3000/images/booking--edge.svg') 0 0/20px
       5px no-repeat #00256c;
   }
@@ -217,22 +219,22 @@ const Button = styled.button`
   float: left;
   line-height: 1.5;
   border: none;
-  width: 12rem;
+  width: 120px;
   background-color: white;
   cursor: pointer;
 `;
 
 const Code = styled.span`
-  font-size: 3.4rem;
+  font-size: 34px;
   display: inline-block;
   width: 100%;
   font-weight: 700;
 `;
 
 const Area = styled.span`
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 1.58;
-  margin-left: -0.4rem;
+  margin-left: -4px;
   color: #555;
 `;
 
@@ -240,7 +242,7 @@ const SecondButton = styled.button`
   float: right;
   line-height: 1.5;
   border: none;
-  width: 12rem;
+  width: 120px;
   background-color: white;
   cursor: pointer;
 `;
@@ -266,20 +268,20 @@ const Line = styled.hr`
   top: 38%;
   display: inline-block;
   border: 1px dashed #749ee3;
-  width: 18rem;
-  margin: 0 1rem;
+  width: 39%;
+  margin: 0 10px;
   z-index: 0;
 `;
 
 const BookingAligner = styled.div`
-  padding-bottom: 0.9rem;
-  height: 120px;
+  padding-bottom: 9px;
+  height: 100px;
 `;
 
 const DateButton = styled.button`
   display: block;
   width: 100%;
-  padding: 1.1rem 0;
+  padding: 11px 0;
   border: 0;
   background: none;
   font-weight: 700;
@@ -288,16 +290,16 @@ const DateButton = styled.button`
 
 const DateWrapper = styled.span`
   display: inline-block;
-  font-size: 1.8rem;
+  font-size: 18px;
   line-height: 1.56;
-  padding-left: 2.8rem;
+  padding-left: 28px;
   background: url('http://localhost:3000/images/booking__date.svg') 0 50%/24px
     24px no-repeat;
   font-weight: 700;
 `;
 
 const Date = styled.span`
-  font-size: 1.8rem;
+  font-size: 18px;
   line-height: 1.56;
   font-weight: 700;
   margin-right: 8px;
@@ -305,8 +307,8 @@ const Date = styled.span`
 
 const OptionContainer = styled.div`
   position: absolute;
-  top: 1.6rem;
-  bottom: 4rem;
+  top: 16px;
+  bottom: 40px;
   right: 0;
   width: 34%;
   padding: 16px 44px 22px;
@@ -314,7 +316,7 @@ const OptionContainer = styled.div`
 `;
 
 const Passengers = styled.button`
-  min-height: 4.8rem;
+  min-height: 48px;
   padding: 5px 34px 0 0;
   width: 100%;
   border: 0;
@@ -326,7 +328,7 @@ const Passengers = styled.button`
 `;
 
 const PassengerType = styled.span`
-  font-size: 1.2rem;
+  font-size: 18px;
 `;
 
 const Form = styled.div`
@@ -334,9 +336,9 @@ const Form = styled.div`
 `;
 
 const Seating = styled.select`
-  height: 4.8rem;
-  font-size: 1.2rem;
-  padding-right: 2.4rem;
+  height: 48px;
+  font-size: 18px;
+  padding-right: 24px;
   background: url('http://localhost:3000/images/ico-select.svg') right
     center/24px 24px no-repeat #fff;
   width: 100%;
@@ -349,13 +351,13 @@ const Seating = styled.select`
 const Search = styled.button`
   display: block;
   width: auto;
-  min-width: 27rem;
-  margin: 6rem auto 0;
-  height: 5.2rem;
-  font-size: 1.5rem;
-  padding: 1.5rem 2rem;
+  min-width: 270px;
+  margin: 60px auto 0;
+  height: 52px;
+  font-size: 18px;
+  padding: 15px 20px;
   border: 1px solid #00256c;
-  border-radius: 0.2rem;
+  border-radius: 2px;
   background-color: #00256c;
   font-weight: 700;
   color: #fff;

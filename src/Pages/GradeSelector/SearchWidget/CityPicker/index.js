@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
+import { fetchGet } from '../../../../utils/fetches';
 
 export default function CityPicker(props) {
   const [toggleState, setToggleState] = useState(0);
+  const [airportData, setAirportData] = useState([]);
+
   const toggleTab = (index) => {
     setToggleState(index);
   };
 
+  useEffect(() => {
+    fetchGet('/Datas/airportData.json')
+      .then((res) => res.json())
+      .then((data) => {
+        setAirportData(data.country_list);
+      });
+  }, []);
+
+  const country = airportData.flatMap((el) => Object.keys(el));
+  const CITY = airportData.map((el, idx) => el[country[idx]]);
   return (
     <div>
       <CityContainer>
@@ -14,7 +27,7 @@ export default function CityPicker(props) {
           <CityTitle>지역과 도시 선택</CityTitle>
           <CityTab>
             <Vertical>
-              {AREA.map((item, index) => {
+              {country.map((item, index) => {
                 return (
                   <li key={index}>
                     <div
@@ -29,7 +42,7 @@ export default function CityPicker(props) {
                 );
               })}
             </Vertical>
-            {AIRPORT.map((item, id) => {
+            {CITY.map((item, id) => {
               return (
                 <div
                   key={id}
@@ -37,12 +50,12 @@ export default function CityPicker(props) {
                 >
                   <LocalTitle>대한항공 취항지</LocalTitle>
                   <ul>
-                    {item.country.map((city, index) => {
+                    {item.map((city, index) => {
                       return (
                         <LocalList key={index}>
                           <LocalButton>
-                            <LocalCode>{city.code}</LocalCode>
-                            <span>{city.airport}</span>
+                            <LocalCode>{city.airport_code}</LocalCode>
+                            <span>{city.city_name}</span>
                           </LocalButton>
                         </LocalList>
                       );

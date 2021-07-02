@@ -1,12 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function PriceInfo() {
+function PriceInfo(props) {
+  const price = props.selectedFlight.map((flight) => +flight.price);
   return (
     <Price>
       <p>총액 :</p>
       <div>
-        <KoreanWon type="text" /> 원
+        {price
+          .reduce((acc, cur) => acc + cur * props.count, 0)
+          .toLocaleString()}{' '}
+        원
       </div>
     </Price>
   );
@@ -18,7 +22,7 @@ const Price = styled.div`
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
   width: 250px;
-  height: 130px;
+  height: 145px;
   padding: 50px 0;
   font-size: 20px;
   font-weight: bold;
@@ -26,15 +30,18 @@ const Price = styled.div`
     margin-top: 5px;
     text-align: left;
   }
+  div {
+    text-align: right;
+    width: 120px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #0064de;
+    text-decoration: underline;
+    text-underline-position: under;
+    padding: 0;
+    line-height: 1.5;
+  }
 `;
-const KoreanWon = styled.span`
-  text-align: right;
-  width: 120px;
-  height: 30px;
-  font-weight: bold;
-  font-size: 20px;
-  color: blue;
-  border: none;
-  padding: 0;
-`;
+
 export default PriceInfo;

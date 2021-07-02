@@ -32,21 +32,21 @@ export default function Counter({ item, amountRef }) {
 const PassengerControl = styled.div`
   display: flex;
   position: relative;
-  width: 16.4rem;
-  margin-left: -0.6rem;
-  margin-top: 1.7rem;
+  width: 164px;
+  margin-left: -6px;
+  margin-top: 17px;
 `;
 
 const SubControl = styled.button`
   position: absolute;
   left: 0;
-  top: 0.2rem;
-  width: 7.4rem;
-  height: 4.4rem;
+  top: 2px;
+  width: 74px;
+  height: 44px;
   padding: 0;
   border: 0;
   color: #555;
-  font-size: 1.6rem;
+  font-size: 16px;
   line-height: 1.5;
   z-index: 1;
   cursor: pointer;
@@ -60,12 +60,12 @@ const CountForm = styled.div`
 
 const PassengerCountWrap = styled.input`
   display: block;
-  width: 4rem;
-  height: 4.8rem;
+  width: 40px;
+  height: 48px;
   margin: 0 auto;
   border: 0;
   border-bottom: 1px solid #00256c;
-  font-size: 2.4rem;
+  font-size: 24px;
   font-weight: 700;
   text-align: center;
   line-height: 1.56;
@@ -74,13 +74,13 @@ const PassengerCountWrap = styled.input`
 const AddControl = styled.button`
   position: absolute;
   right: 0;
-  top: 0.2rem;
-  width: 7.4rem;
-  height: 4.4rem;
+  top: 2px;
+  width: 74px;
+  height: 44px;
   padding: 0;
   border: 0;
   color: #555;
-  font-size: 1.6rem;
+  font-size: 16px;
   line-height: 1.5;
   z-index: 1;
   cursor: pointer;

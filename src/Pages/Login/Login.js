@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link, withRouter, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import Footer from '../../Components/Footer/Footer';
 import { KAKAO_LOGIN_API } from '../../config';
+import { setToken } from '../../utils/storage';
 
 function Login() {
   const history = useHistory();
+
   const kakaoLoginHandler = () => {
     window.Kakao.Auth.login({
       success: (auth) => {
@@ -17,7 +20,8 @@ function Login() {
           .then((res) => res.json())
           .then((res) => {
             if (res.token) {
-              localStorage.setItem('LogToken', res.token);
+              setToken(res.token);
+
               alert('로그인성공');
               history.push('/main');
             } else {
@@ -33,38 +37,41 @@ function Login() {
   };
 
   return (
-    <Article>
-      <LoginBox>
-        <LoginForm>
-          <LoginInner>
-            <Head>로그인</Head>
-            <InputBox>
-              <IdText>
-                회원 아이디/스카이패스 회원번호
-                <Required>필수 입력</Required>
-              </IdText>
-              <IdInput type="text" />
-              <PwText>
-                비밀번호
-                <Required>필수 입력</Required>
-              </PwText>
-              <PwInput type="text" />
-            </InputBox>
+    <>
+      <Article>
+        <LoginBox>
+          <LoginForm>
+            <LoginInner>
+              <Head>로그인</Head>
+              <InputBox>
+                <IdText>
+                  회원 아이디/스카이패스 회원번호
+                  <Required>필수 입력</Required>
+                </IdText>
+                <IdInput type="text" />
+                <PwText>
+                  비밀번호
+                  <Required>필수 입력</Required>
+                </PwText>
+                <PwInput type="text" />
+              </InputBox>
 
-            <BtnBox>
-              <LoginBtn>로그인</LoginBtn>
-              <SnsText>
-                <SnsTitle>SNS 로그인</SnsTitle>
-              </SnsText>
-              <LoginBtn type="button" kakao onClick={kakaoLoginHandler}>
-                &nbsp;카카오 계정으로 로그인
-              </LoginBtn>
-            </BtnBox>
-          </LoginInner>
-          <BtnSignup href="/signup">회원가입</BtnSignup>
-        </LoginForm>
-      </LoginBox>
-    </Article>
+              <BtnBox>
+                <LoginBtn>로그인</LoginBtn>
+                <SnsText>
+                  <SnsTitle>SNS 로그인</SnsTitle>
+                </SnsText>
+                <LoginBtn type="button" kakao onClick={kakaoLoginHandler}>
+                  &nbsp;카카오 계정으로 로그인
+                </LoginBtn>
+              </BtnBox>
+            </LoginInner>
+            <BtnSignup href="/signup">회원가입</BtnSignup>
+          </LoginForm>
+        </LoginBox>
+      </Article>
+      <Footer />
+    </>
   );
 }
 
@@ -74,7 +81,7 @@ const Article = styled.div`
   align-items: center;
   background-color: #c1dcf9;
   height: 100vh;
-  margin: 89px 0 460px 0;
+  margin-top: 89px;
 `;
 
 const LoginBox = styled.div`
@@ -125,7 +132,7 @@ const Required = styled.span`
   white-space: nowrap;
   text-indent: 100%;
   position: relative;
-  width: 0.5rem;
+  width: 5px;
   font-size: inherit;
   vertical-align: bottom;
   &::after {
@@ -133,8 +140,8 @@ const Required = styled.span`
     position: absolute;
     top: 0;
     left: 0;
-    width: 0.4rem;
-    height: 0.4rem;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
     background-color: #de001b;
   }
@@ -147,7 +154,7 @@ const IdInput = styled.input`
   border-bottom: 1px solid #00256c;
   &:hover {
     border: rgb(87, 124, 192) 1px solid;
-    border-radius: 00.2rem;
+    border-radius: 2px;
   }
 `;
 
@@ -165,7 +172,7 @@ const PwInput = styled.input`
   border-bottom: 1px solid #00256c;
   &:hover {
     border: rgb(87, 124, 192) 1px solid;
-    border-radius: 00.2rem;
+    border-radius: 2px;
   }
 `;
 
@@ -187,7 +194,7 @@ const SnsText = styled.h3`
     top: 50%;
     left: 0;
     right: 0;
-    height: 0.1rem;
+    height: 1px;
     background: #d9dbe1;
   }
 `;
@@ -195,8 +202,8 @@ const SnsText = styled.h3`
 const SnsTitle = styled.span`
   display: inline-block;
   position: relative;
-  margin: 0 1rem;
-  padding: 0 1.7rem;
+  margin: 0 10px;
+  padding: 0 17px;
   background: #fff;
   font-weight: 600;
 `;
@@ -205,7 +212,7 @@ const LoginBtn = styled.button`
   width: 410px;
   height: 60px;
   border: 1.5px solid #fff;
-  border-radius: 0.2rem;
+  border-radius: 2px;
   margin: 30px 0 20px 0;
   padding: 2px;
   cursor: pointer;
@@ -215,7 +222,7 @@ const LoginBtn = styled.button`
   font-weight: 600;
   :hover {
     border: rgb(82, 167, 182) 1.5px solid;
-    border-radius: 00.2rem;
+    border-radius: 2px;
   }
 `;
 
@@ -232,7 +239,7 @@ const BtnSignup = styled(Link)`
   color: black;
   &:hover {
     border: rgb(87, 124, 192) 1px solid;
-    border-radius: 00.2rem;
+    border-radius: 2px;
   }
 `;
 

@@ -1,0 +1,17 @@
+{
+  "result": "SUCCESS",
+  "tickets": [
+    {
+      "ticketId": 8,
+      "userId": 4,
+      "ticketNumber": "b2846a63-63a6-4da7-8c5f-c776cee39028",
+      "flightId": 30,
+      "departureDatetime": "2021-07-02T11:00:00",
+      "departureAirportCode": "CJU",
+      "arrivalAirportCode": "KWJ",
+      "departureAirportName": "제주",
+      "arrivalAirportName": "광주",
+      "passengerSameFlight": 2
+    }
+  ]
+}

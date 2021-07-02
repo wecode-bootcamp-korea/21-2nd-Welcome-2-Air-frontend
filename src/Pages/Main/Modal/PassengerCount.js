@@ -8,7 +8,6 @@ export default function PassengerCount({ toClose, setAmount }) {
   const passengerAmountRef = useRef({ 성인: 0, 소아: 0, 유아: 0 });
 
   const confirmPassengerCount = () => {
-    // state로 관리할 필요가 없었음 (불필요한 render)
     const amount = Object.values(passengerAmountRef.current).reduce(
       (acc, cur) => acc + cur,
       0,
@@ -46,32 +45,32 @@ export default function PassengerCount({ toClose, setAmount }) {
 }
 
 const CountTitle = styled.h2`
-  margin-right: 2rem;
+  margin-right: 20px;
   font-weight: 700;
-  font-size: 2.1rem;
+  font-size: 21px;
   line-height: 1.5;
-  margin-bottom: 0.8rem;
+  margin-bottom: 8px;
 `;
 
 const CountAligner = styled.div`
-  margin: 2rem 3.5rem 0;
-  padding-bottom: 4rem;
+  margin: 20px 35px 0;
+  padding-bottom: 40px;
 `;
 
 const PassengerItems = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4rem;
+  margin-bottom: 40px;
 `;
 
 const PassengerItem = styled.div`
-  margin: 2rem 0;
-  width: 15.2rem;
+  margin: 20px 0;
+  width: 152px;
 `;
 
 const PassengerLabel = styled.span`
-  margin-bottom: 0.4rem;
-  font-size: 1.8rem;
+  margin-bottom: 4px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.56;
 `;
@@ -80,19 +79,19 @@ const ConfirmContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 0;
-  margin-top: 4rem;
+  margin-top: 40px;
 `;
 
 const ConfirmButton = styled.button`
   display: inline-block;
-  min-width: 20rem;
-  min-height: 4.8rem;
-  padding: 1.2rem 1rem;
+  min-width: 200px;
+  min-height: 48px;
+  padding: 12px 10px;
   width: auto;
-  font-size: 1.6rem;
+  font-size: 16px;
   line-height: 1.5;
   border: 1px solid #013066;
-  border-radius: 0.2rem;
+  border-radius: 2px;
   background-color: #013066;
   color: #fff;
   font-weight: 700;
@@ -104,13 +103,13 @@ const ConfirmButton = styled.button`
 const CloseButton = styled.button`
   display: block;
   position: absolute;
-  top: 4.2rem;
-  right: 3rem;
-  width: 4.4rem;
-  height: 4.4rem;
+  top: 42px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
   border: 0;
-  background: url('/images/close.svg') 50% 50%/24px 24px no-repeat;
-  border-radius: 0.2rem;
+  background: url('/images/close.svg') 50% 50% / 24px 24px no-repeat;
+  border-radius: 2px;
   cursor: pointer;
   white-space: nowrap;
 `;
