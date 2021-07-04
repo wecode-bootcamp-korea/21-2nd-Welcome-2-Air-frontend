@@ -5,6 +5,9 @@
 ## 💬 프로젝트 개요
 항공권 예약 및 구매 사이트 클로닝
 
+## 💻 시연 영상
+[![예제](http://img.youtube.com/vi/TrGUMYztAxs/0.jpg)](https://www.youtube.com/watch?v=TrGUMYztAxs) 
+
 ## 👫 팀원
 
 - FE 3인: [이상훈](), [오선주](), [이기완]()
