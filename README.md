@@ -25,7 +25,7 @@
 
 ## 🐱‍👤 협업 Tool
 
-- Terello, Slack, Git-Hub
+- Trello, Slack, Git-Hub
 
 
 ## 👍🏻 구현 기능 상세
@@ -34,10 +34,12 @@
 
 > kakao API 기반 소셜 로그인 구현 
 
-### 2. 메인 페이지 
+### 2. 메인 페이지 (오선주)
 
-> - 모달 검색창 ( 캘린더, 인원수 증감, 지역선택)
-> - react-dates 사용 input 구현
+> - react-dates를 통해 캘린더 구현
+> - 검색창 및 클릭창을 공통 모달창으로 구현
+> - useRef 를 통해 각각의 인원수 합계를 화면에 띄워주는 기능 구현
+> - Custom Hook과 useReducer를 통해 onClick 시 인원 수 증감을 표현
 
 
 ### 3. 선택 페이지
